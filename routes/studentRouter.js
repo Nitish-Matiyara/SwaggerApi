@@ -48,10 +48,9 @@ router.get("/:id", (req,res)=>{
 
 
 //--UPDATE
-router.put("/:id", (req,res)=>{
-    const updatedStudent = studentData.filter( user => user.id === parseInt(req.params.id))
-    req.body = updatedStudent
-    res.status(200).send(updatedStudent) 
+router.patch("/:id", (req,res)=>{
+ 
+  
 })
 
 //--DELETE    

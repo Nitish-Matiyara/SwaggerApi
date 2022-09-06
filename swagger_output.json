@@ -71,7 +71,7 @@
           }
         }
       },
-      "put": {
+      "patch": {
         "description": "Updates a particular student detail",
         "parameters": [
           {
