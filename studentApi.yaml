@@ -1,0 +1,156 @@
+openapi: 3.0.0
+servers:
+ - description: This is my local server
+   url: "http://localhost:8000"
+info:
+  description: This is a simple API design for student details.
+  version: "1.0.0"
+  title: Student-Records API
+  contact:
+    email: nitish@abc.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+
+paths:
+  /student:
+    get:
+      tags:
+        - students
+      summary: Get list of all students
+      operationId: getStudents
+      description: Shows details of all students 
+      responses:
+        '200':
+          description: Get list of all students
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/StudentDetails'
+        '400':
+          description: Invalid input data
+    post:
+      tags:
+        - students
+      summary: Add a student detail
+      operationId: addStudent
+      description: Adds a student detail in system
+      requestBody:
+        content:
+         application/json:
+          schema:
+           $ref: '#/components/schemas/StudentDetails'
+        description: Created new student  
+        required: true
+      responses:
+        '200':
+          description: Student added
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: An existing student already exists
+  /student/{id}:
+    get:
+      tags:
+        - students
+      summary: Get a particular student by ID
+      description: Returns a single student detail
+      operationId: getStudentById
+      parameters:
+        - name: id
+          in: path
+          description: ID of student whose details to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+               $ref: '#/components/schemas/StudentDetails'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student not found
+    put:
+      tags:
+        - students
+      summary: Updates a particular student detail
+      operationId: updateStudent
+      produces: 
+       - application/json
+      consumes:
+       - application/json
+      parameters:
+        - name: studentId
+          in: path
+          description: The student to update
+      requestBody:
+        content:
+          application/json:   
+          schema:
+            $ref: '#/components/schemas/StudentDetails'
+          required: true   
+      responses:
+        '200':
+          description: Student updated
+        '400':
+          description: 'invalid input, object invalid'
+        '409':
+          description: An existing student already exists
+    delete:
+      tags:
+        - students
+      summary: Deletes a student 
+      operationId: deleteStudent
+      parameters:
+        - name: id
+          in: path
+          description: Student id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Student not found
+  
+components:
+  schemas:
+    StudentDetails:
+      type: array
+      items:
+        type: object
+      required:
+        - id
+        - firstname
+        - lastname
+        - age
+        - contact
+      properties:
+        id:
+          type: number
+          example: 33
+        firstname:
+          type: string
+          example: Ram
+        lastname:
+          type: string
+          example: Charan
+        age:
+          type: integer
+          minimum: 1
+          maximum: 2
+          example: 22 
+        contact:
+          type: integer
+          minimum: 10
+          maximum: 10
+          example: 1234554321

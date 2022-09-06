@@ -1,0 +1,129 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Student-Records API",
+    "description": "This is a simple API design for student details."
+  },
+  "host": "localhost:8001",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/student": {
+      "post": {
+        "description": "Adds a student detail in system",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "example": 8
+                },
+                "firstname": {
+                  "example": "Catherine"
+                },
+                "lastname": {
+                  "example": "Teresa"
+                },
+                "age": {
+                  "example": 35
+                },
+                "contact": {
+                  "example": 1234554321
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "description": "Get list of all students",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Student list fetched"
+          }
+        }
+      }
+    },
+    "/student/{id}": {
+      "get": {
+        "description": "Get a particular student by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Specific student fetched"
+          }
+        }
+      },
+      "put": {
+        "description": "Updates a particular student detail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstname": {
+                  "example": "any"
+                },
+                "lastname": {
+                  "example": "any"
+                },
+                "age": {
+                  "example": "any"
+                },
+                "contact": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student updated"
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a student ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted student"
+          }
+        }
+      }
+    }
+  }
+}
