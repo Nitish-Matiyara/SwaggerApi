@@ -71,7 +71,7 @@
           }
         }
       },
-      "patch": {
+      "put": {
         "description": "Updates a particular student detail",
         "parameters": [
           {
@@ -86,6 +86,9 @@
             "schema": {
               "type": "object",
               "properties": {
+                "id":{
+                  "example": 9
+                },
                 "firstname": {
                   "example": "any"
                 },
@@ -93,10 +96,10 @@
                   "example": "any"
                 },
                 "age": {
-                  "example": "any"
+                  "example": 22
                 },
                 "contact": {
-                  "example": "any"
+                  "example": 1234432112
                 }
               }
             }

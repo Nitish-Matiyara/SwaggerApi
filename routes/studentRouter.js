@@ -48,8 +48,19 @@ router.get("/:id", (req,res)=>{
 
 
 //--UPDATE
-router.patch("/:id", (req,res)=>{
- 
+router.put("/:id", (req,res)=>{
+    let updateStudent = studentData.filter( user => user.id !== parseInt(req.params.id))
+   
+
+    let data = {
+        id: req.params.id,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        age: req.body.age,
+        contact: req.body.contact
+    }
+    updateStudent.push(data)
+    res.status(200).send(updateStudent)
   
 })
 
