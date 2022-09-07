@@ -51,7 +51,7 @@ router.get("/:id", (req,res)=>{
 router.put("/:id", (req,res)=>{
     let updateStudent = studentData.filter( user => user.id !== parseInt(req.params.id))
    
-
+   console.log(req.body)
     let data = {
         id: req.params.id,
         firstname: req.body.firstname,
@@ -59,7 +59,9 @@ router.put("/:id", (req,res)=>{
         age: req.body.age,
         contact: req.body.contact
     }
+
     updateStudent.push(data)
+
     res.status(200).send(updateStudent)
   
 })
